@@ -90,7 +90,7 @@ public class ServiceBean {
     public void sendSMS() {
         String dummyPhone = user.getContact().getPhone();
         TextMagicMessageService service =
-                new TextMagicMessageService("l1112035@std.yildiz.edu.tr", "123456");
+                new TextMagicMessageService("*****", "****");
         try {
             service.send(smsText, dummyPhone);
         } catch (ServiceException ex) {
