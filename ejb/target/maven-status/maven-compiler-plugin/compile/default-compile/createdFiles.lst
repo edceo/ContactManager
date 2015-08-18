@@ -1,0 +1,6 @@
+com/edsoft/ejb/ContactBean.class
+com/edsoft/modal/Contact.class
+com/edsoft/ejb/BasicOperations.class
+com/edsoft/modal/User.class
+com/edsoft/ejb/UserBean.class
+com/edsoft/ejb/Program.class

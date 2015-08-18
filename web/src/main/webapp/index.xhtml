@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+        >
+
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+          rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+    <div class="cover">
+        <div class="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navbar-ex-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><span>Brand</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <p:link outcome="index.xhtml" value="Home"/>
+                        </li>
+                        <li>
+
+                            <h:form>
+                                <p:growl id="grwl" showDetail="true" showSummary="true"/>
+                                <p:commandLink style="float: right;" onclick="PF('dlg').show()" value="Login"/>
+                                <p:dialog widgetVar="dlg" closable="true" showEffect="slider" resizable="true"
+                                          width="500" height="150">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <label for="inputEmail3" class="control-label">Username</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p:inputText id="inputEmail3" class="form-control" required="true"
+                                                             requiredMessage="Kullanıcı Adını Giriniz"
+                                                             value="#{loginBean.username}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <label for="inputPassword3" class="control-label">Password</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p:password id="inputPassword3" class="form-control"
+                                                            required="true"
+                                                            requiredMessage="Şifrenizi Giriniz"
+                                                            value="#{loginBean.password}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <p:commandButton type="submit" styleClass="btn btn-default"
+                                                                 update="grwl" value="Sign in"
+                                                                 action="#{loginBean.loginControl()}"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </p:dialog>
+                            </h:form>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cover-image"
+             style="background-image : url('http://voipcommunicationreviews.com/wp-content/uploads/2013/12/VOIP-Service-Providers-Business-.jpg')"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="text-inverse">Online Telefon Rehberiniz</h1>
+
+                    <p class="text-inverse">Telefon Rehberinizi İnternet Ortamında Kullanın</p>
+                    <br/>
+                    <br/>
+                    <h:form>
+                        <p:growl id="growl" showDetail="true" showSummary="true"/>
+                        <p:commandLink styleClass="btn btn-lg btn-primary" value="Ücretsiz Deneyin"
+                                       onclick="PF('dlg1').show()"/>
+                        <p:dialog widgetVar="dlg1" closable="true" resizable="true" showEffect="slider" width="750"
+                                  height="400"
+                                >
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="namesurname" class="control-label">Name-Surname</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText placeholder="Name-Surname" id="namesurname"
+                                                     styleClass="form-control" required="true"
+                                                     requiredMessage="Adınızı Giriniz"
+                                                     value="#{signIn.user.nameSurname}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="username" class="control-label">Username</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText placeholder="Username" id="username"
+                                                     styleClass="form-control" required="true"
+                                                     requiredMessage="Kullanıcı Adını Giriniz"
+                                                     value="#{signIn.user.username}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="inputPassword" class="control-label">Password</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:password id="inputPassword" placeholder="Password" feedback="true"
+                                                    maxlength="12" required="true"
+                                                    requiredMessage="Şifrenizi Giriniz"
+                                                    styleClass="form-control" value="#{signIn.user.password}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="inputEmail" class="control-label">E-Mail</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="inputEmail" placeholder="E-mail" required="true"
+                                                     requiredMessage="E-Mail Giriniz"
+                                                     styleClass="form-control" value="#{signIn.user.email}">
+                                            <f:validateRegex
+                                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="google" class="control-label">Google App</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText placeholder="Mail sistemi için gereklidir." id="google"
+                                                     styleClass="form-control"
+                                                     value="#{signIn.user.googleActivation}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Servis Kullanımı</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:selectBooleanCheckbox id="services" offLabel="No" onLabel="Yes"
+                                                                 value="#{signIn.user.enableService}"/>
+                                    </div>
+                                </div>
+                                <p:fileUpload id="fileUpload"
+                                              mode="advanced" fileUploadListener="#{signIn.handleFileUpload}"
+                                              sizeLimit="100000000" fileLimit="1"
+                                              allowTypes="/(\.|\/)(jpeg)$/"></p:fileUpload>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <p:commandButton type="submit" styleClass="btn btn-default"
+                                                         update="growl"
+                                                         value="Sign in" action="#{signIn.signUp}"/>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </p:dialog>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="http://www.inboxmailmarketing.com/blog/wp-content/uploads/Email-Opens.jpg"
+                         class="img-responsive"/>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="text-primary">Mail Servisimizden Yararlanın</h1>
+
+                    <p>Telefon rehberinizi sadece telefon ile sınırlı kullanmayın. Online telefon
+                        rehberini kullanarak telefonunuzdaki kayıtlı kişilere mail atın, kendi
+                        mailinizi yönetin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="text-primary">Online SMS Servisi</h1>
+
+                    <p>Evet yanlış okumadınız. Online SMS Servisimizi kullanarak rehberinizdeki
+                        kişilere online sms atabilirsiniz. Böylelikle sms'im bitti çilesine de
+                        son.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="http://img-s2.onedio.com/id-553f8741f70fecd2483c021f/rev-0/raw/s-cf7467081f70f76b83e223dfc508651554f215f4.gif"
+                         class="img-responsive"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section-danger">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Hakkımızda</h1>
+
+                    <p>Online Telefon Rehberi Projesi bir EDSOFT projesidir. EDSOFT bir çok alanda
+                        yazılım geliştiren, araştırmalar yapan bir yazılım firmasıdır. Pek çok
+                        çalışmaya imza atmış ve de pek çok başarılar edinmiştir. Lorem ipsum dolor
+                        sit amet, ne qui animal regione adversarium, ferri nonumes signiferumque
+                        qui no, errem doming persecuti pro at. At sit suavitate consectetuer. Ad
+                        nec vide tincidunt. An esse docendi his, pro eius dicta dicit id. Qui an
+                        ludus albucius delectus, nec in meis corpora, dolorum nusquam torquatos
+                        quo ex.Lorem ipsum dolor sit amet, ne qui animal regione adversarium, ferri
+                        nonumes signiferumque qui no, errem doming persecuti pro at. At sit suavitate
+                        consectetuer. Ad nec vide tincidunt. An esse docendi his, pro eius dicta
+                        dicit id. Qui an ludus albucius delectus, nec in meis corpora, dolorum
+                        nusquam torquatos quo ex.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://unsplash.imgix.net/uploads/1412112828986a673b954/1d8ef901?w=1024&amp;q=50&amp;fm=jpg&amp;s=9c44bb02d0811d30403b18a15a70e6a2"
+                         class="img-responsive"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="section section-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>EDSOFT</h1>
+
+                    <p>CEO Yusuf ONDER</p>
+
+                    <p>Telefon: 5076055794</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-info text-right">
+                        <br/>
+                        <br/>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                            <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 hidden-xs text-right">
+                            <a href="https://twitter.com/PresidentOfED"><i
+                                    class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                            <a href="https://www.facebook.com/yusuf.onder.14"><i
+                                    class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                            <a href="https://github.com/edceo"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</h:body>
+</html>

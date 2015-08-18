@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_8" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+	</contentEntry>
+	<lib name="Maven: javax:javaee-api:7.0" scope="PROVIDED"/>
+	<lib name="Maven: com.sun.mail:javax.mail:1.5.0" scope="PROVIDED"/>
+	<lib name="Maven: javax.activation:activation:1.1" scope="PROVIDED"/>
+	<levels>
+		<level name="Maven: javax:javaee-api:7.0" value="project"/>
+		<level name="Maven: com.sun.mail:javax.mail:1.5.0" value="project"/>
+		<level name="Maven: javax.activation:activation:1.1" value="project"/>
+		<level name="Maven: mysql:mysql-connector-java:5.1.35" value="project"/>
+		<level name="Maven: org.eclipse.persistence:eclipselink:2.6.0" value="project"/>
+		<level name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" value="project"/>
+		<level name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" value="project"/>
+		<level name="Maven: javax.validation:validation-api:1.1.0.Final" value="project"/>
+		<level name="Maven: org.glassfish:javax.json:1.0.4" value="project"/>
+	</levels>
+</component>

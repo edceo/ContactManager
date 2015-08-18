@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+        >
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+          rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p:graphicImage library="image" name="#{userBean.contact.photo}"
+                                    class="img-responsive"/>
+                </div>
+                <div class="col-md-6">
+                    <h1>#{userBean.contact.nameSurname}</h1>
+
+                    <p>#{userBean.contact.createdDate} #{userBean.contact.email}</p>
+                    <h:form>
+                        <p:commandButton value="SMS Gönder" disabled="#{!loginBean.user.enableService}"
+                                         onclick="PF('sms').show()"/>
+                        <p:dialog widgetVar="sms">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Title"/>
+                                <p:inputTextarea value="#{serviceBean.smsText}"/>
+                            </p:panelGrid>
+                            <p:commandButton value="Gönder" action="#{serviceBean.sendSMS}"
+                                             onsuccess="PF('sms').hide()"/>
+                        </p:dialog>
+                        <p:commandButton value="Mail Gönder" disabled="#{!loginBean.user.enableService}"
+                                         onclick="PF('mail').show()"/>
+                        <p:dialog widgetVar="mail">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Title"/>
+                                <p:inputText value="#{serviceBean.mailTitle}"/>
+                                <p:outputLabel value="Content"/>
+                                <p:inputTextarea value="#{serviceBean.mailText}"/>
+                            </p:panelGrid>
+                            <p:commandButton value="Gönder" action="#{serviceBean.sendMail}"
+                                             onsuccess="PF('mail').hide()"/>
+                        </p:dialog>
+                        <p:commandButton value="Kişiyi Sil" action="#{serviceBean.deleteContact}"/>
+                        <p:commandButton value="Bilgileri Düzenle" onclick="PF('update').show()"
+                                />
+                        <p:dialog widgetVar="update" style="width: 1000px; height:1200px; ">
+                            <form class="form-horizontal" role="form">
+
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="updatesurname" class="control-label">Name-Surname</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText placeholder="Name-Surname" id="updatesurname"
+                                                     styleClass="form-control" required="true"
+                                                     value="#{serviceBean.user.contact.nameSurname}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="updatename" class="control-label">Address</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputTextarea placeholder="Address" id="updatename"
+                                                         styleClass="form-control" required="true"
+                                                         value="#{serviceBean.user.contact.address}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="updatePassword" class="control-label">Phone</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="updatePassword" placeholder="Phone"
+                                                     required="true"
+                                                     class="form-control" value="#{serviceBean.user.contact.phone}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="updateEmail" class="control-label">E-Mail</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="updateEmail" placeholder="E-mail"
+                                                     styleClass="form-control"
+                                                     value="#{serviceBean.user.contact.email}">
+                                            <f:validateRegex
+                                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                                        </p:inputText>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <p:commandButton styleClass="btn btn-default" ajax="false"
+                                                         value="Sign in" action="#{serviceBean.updateContact}"
+                                                         onsuccess="PF('update').hide()"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </p:dialog>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

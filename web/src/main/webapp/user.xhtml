@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+          rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span>Brand</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <h:form id="a">
+                            <p:commandLink value="Kayıt Ekle" onclick="PF('cnt').show()"/>
+                            <p:dialog widgetVar="cnt" width="750" height="400">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label for="namesurname" class="control-label">Name-Surname</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <p:inputText placeholder="Name-Surname" id="namesurname"
+                                                         styleClass="form-control" required="true"
+                                                         value="#{userBean.contact.nameSurname}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label for="username" class="control-label">Address</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <p:inputTextarea placeholder="Email" id="username"
+                                                             styleClass="form-control" required="true"
+                                                             value="#{userBean.contact.address}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label for="inputPassword" class="control-label">Telefon</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <p:inputText id="inputPassword" placeholder="Password" feedback="true"
+                                                         maxlength="12" required="true"
+                                                         styleClass="form-control" value="#{userBean.contact.phone}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label for="inputEmail" class="control-label">E-Mail</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <p:inputText id="inputEmail" placeholder="E-mail"
+                                                         styleClass="form-control" value="#{userBean.contact.email}">
+                                                <f:validateRegex
+                                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:fileUpload id="fileUpload"
+                                                      mode="advanced" fileUploadListener="#{userBean.handleFileUpload}"
+                                                      sizeLimit="100000000" fileLimit="1"
+                                                      allowTypes="/(\.|\/)(jpeg)$/"></p:fileUpload>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <p:commandButton type="submit" styleClass="btn btn-default"
+                                                             value="Add" action="#{userBean.addContact}"
+                                                             onsuccess="PF('cnt').hide()" update=":b:c"/>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </p:dialog>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <p:commandLink value="Hesabı Sil" action="#{loginBean.deleteAccount}"/>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <p:commandLink value="Çıkış Yap" action="#{loginBean.logOut}"/>
+                        </h:form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section section-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p style="font-size:64px;">Merhaba #{userBean.user.nameSurname}</p>
+
+                    <p></p>
+                </div>
+                <div class="col-md-4">
+                    <p:graphicImage library="image" name="#{userBean.user.photo}" class="img-responsive"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <h:form id="b">
+                <p:dataScroller id="c" value="#{userBean.user.contactList}" var="con" chunkSize="10" mode="inline"
+                                scrollHeight="500">
+                    <f:facet name="header">
+                        Rehberiniz
+                    </f:facet>
+
+                    <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                        <p:link outcome="contact">
+                            <p:graphicImage name="#{con.photo}" library="image" style="width: 300px; height: 300px;"/>
+                            <f:param name="contact" value="#{con.id.toString()}"/>
+                        </p:link>
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="AdSoyad:"/>
+                                <p:link outcome="contact" value="#{con.nameSurname}" action="#{userBean.go}"
+                                        style="font-weight: bold">
+                                    <f:param name="contact" value="#{con.id.toString()}"/>
+                                </p:link>
+
+                                <h:outputText value="Telefon"/>
+                                <h:outputText value="#{con.phone}" style="font-weight: bold"/>
+
+                                <h:outputText value="E-Mail"/>
+                                <h:outputText value="#{con.email}" style="font-weight: bold"/>
+
+                                <h:outputText value="Son Güncelleme"/>
+                                <h:outputText value="#{con.lastModifier}" style="font-weight: bold"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>
